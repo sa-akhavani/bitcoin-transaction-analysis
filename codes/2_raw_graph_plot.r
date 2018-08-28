@@ -17,6 +17,7 @@ E(net)$color <- "orange"
 
 deg <- degree(net, mode="all")
 V(net)$color <- "gray50"
+V(net)$size <- degree(net, mode="all")
 V(net)$label <- ifelse(V(net)$size<10,NA,V(net)$name)
 V(net)$label.font <- 5
 V(net)$label.color <- "white"
