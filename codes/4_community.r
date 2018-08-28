@@ -5,7 +5,8 @@ links <- read.csv("./5000_simplified_dataframe.data", header=T, as.is=T, sep=","
 links <- links[sample(nrow(links), 150),]
 net <- graph_from_data_frame(d=links, directed=F)
 
-cfg <- cluster_fast_greedy(net)
+# clusters <- cluster_fast_greedy(net)
+clusters <- cluster_label_prop(net)
 
 ## Plot Community
 E(net)$arrow.mode <- 0
@@ -21,9 +22,9 @@ V(net)$label.cex <- 0.5
 l <- layout_with_fr(net)
 # l <- layout_randomly
 
-plot(cfg, net, layuot=l)
+plot(clusters, net, layuot=l)
 
 # Another Coloring
-# V(net)$community <- cfg$membership
+# V(net)$community <- clusters$membership
 # colrs <- adjustcolor( c("gray50", "tomato", "gold", "yellowgreen"), alpha=.6)
 # plot(net, vertex.color=colrs[V(net)$community])
