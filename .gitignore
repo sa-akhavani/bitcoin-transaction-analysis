@@ -1,0 +1,10 @@
+# Transaction Dataset
+*.data
+
+# Output Picture
+*.png
+*.jpg
+*.pdf
+
+# Cytoscape Session
+*.cys
