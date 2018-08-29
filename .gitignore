@@ -6,5 +6,12 @@
 *.jpg
 *.pdf
 
+# Output html/css Pages
+*.css
+*.js
+*.html
+*.yaml
+*.map
+
 # Cytoscape Session
 *.cys
