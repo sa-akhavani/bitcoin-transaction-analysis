@@ -16,13 +16,15 @@ E(net)$width <- sqrt(E(net)$weight)
 V(net)$label <- ifelse(V(net)$size<0,NA,V(net)$name)
 V(net)$label.font <- 2
 V(net)$label.color <-"black"
-V(net)$label.cex <- 0.5
+V(net)$label.cex <- 3
 
 # graph_attr(net, "layout") <- layout_with_fr(net)
 l <- layout_with_fr(net)
 # l <- layout_randomly
 
+png(filename="community_graph.png", width=4096, height=4096)
 plot(clusters, net, layuot=l)
+dev.off()
 
 # Another Coloring
 # V(net)$community <- clusters$membership
