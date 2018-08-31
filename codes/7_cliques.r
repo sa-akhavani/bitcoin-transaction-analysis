@@ -6,12 +6,11 @@ links <- read.csv("./au_graph.txt", header=F, as.is=T, sep="\t")
 
 # Simplify Graph
 net <- graph_from_data_frame(d=links, directed=F)
-net <- simplify(net, remove.multiple = T, remove.loops = T, edge.attr.comb="sum")
-net <- as.undirected(net, mode= "collapse", edge.attr.comb=list(weight="sum", "ignore"))
+# net <- simplify(net, remove.multiple = T, remove.loops = T)
+net <- as.undirected(net, mode= "collapse")
 
 
-length(largest_cliques(net))
-length(cq)
+largest_cliques(net)
 
 # Count maximal cliques
 sizes <- c(3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
@@ -38,9 +37,9 @@ df <- data.frame(x, y)
 
 png(filename="maximal_clique_distribution.png", width=2048, height=2048)
 ggplot(df, aes(x = x, y = y)) +
-  geom_point(size=10, colour="red", shape=20) +
+  geom_point(size=20, colour="red", shape=20) +
   scale_x_continuous("Clique Size", breaks=x) +
   scale_y_continuous("Frequency", breaks=y) +
   ggtitle("Maximal Cliques Distribution") +
-  theme(text = element_text(size=40))
+  theme(text = element_text(size=50))
 dev.off()
