@@ -23,5 +23,5 @@ ggplot(df, aes(x = indegree, y = ranks)) +
   scale_y_continuous("Page Rank", trans="log10") +
   geom_smooth(method=lm, se=FALSE) + 
   ggtitle("Page Rank and In-Degree Correlation") +
-  theme(text = element_text(size=20))
+  theme(text = element_text(size=50))
 dev.off()
