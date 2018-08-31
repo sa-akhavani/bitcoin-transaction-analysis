@@ -15,21 +15,21 @@ outdegree.histogram <- count(outdegree)
 # Indegree
 png(filename="in_degree_distribution.png", width=2048, height=2048)
 ggplot(indegree.histogram, aes(x = x, y = freq)) +
-  geom_point(size=2.5, colour="red", shape=20) +
+  geom_point(size=7.5, colour="red", shape=20) +
   scale_x_continuous("In-Degree", trans = "log10") +
   scale_y_continuous("No. Of Nodes", trans = "log10") +
   ggtitle("In-Degree Distribution") +
-  theme(text = element_text(size=40))
+  theme(text = element_text(size=50))
 dev.off()
 
 # outdegree
 png(filename="out_degree_distribution.png", width=2048, height=2048)
 ggplot(outdegree.histogram, aes(x = x, y = freq)) +
-  geom_point(size=2.5, colour="red", shape=20) +
+  geom_point(size=7.5, colour="red", shape=20) +
   scale_x_continuous("Out-Degree", trans = "log10") +
   scale_y_continuous("No. Of Nodes", trans = "log10") +
   ggtitle("Out-Degree Distribution") +
-  theme(text = element_text(size=40))
+  theme(text = element_text(size=50))
 dev.off()
 
 # Correlation
@@ -39,10 +39,10 @@ cor
 png(filename="in_out_degree_correlation_distribution.png", width=2048, height=2048)
 corr.df <- data.frame(indegree, outdegree)
 ggplot(corr.df, aes(x = indegree, y = outdegree)) +
-  geom_point(size=2, colour="red", shape=19) +
+  geom_point(size=7.5, colour="red", shape=19) +
   scale_x_continuous("InDegree", trans = "log10") +
   scale_y_continuous("OutDegree", trans = "log10") +
-  geom_smooth(method=lm, se=FALSE) + 
+  geom_smooth(method=lm, se=FALSE, weight=5) + 
   ggtitle("In-Degree/Out-Degree Correlation") +
-  theme(text = element_text(size=40))
+  theme(text = element_text(size=50))
 dev.off()
