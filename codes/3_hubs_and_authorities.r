@@ -3,7 +3,6 @@ library("igraph")
 # Creating Graph
 all_links <- read.csv("./au_graph.txt", header=T, as.is=T, sep="\t")
 links <- all_links[sample(nrow(all_links), 7000),]
-links <- all_links
 links$weight = 1
 
 net <- graph_from_data_frame(d=links, directed=T)
@@ -25,7 +24,7 @@ E(net)$color <- "gray50"
 l <- layout_with_fr(net)
 V(net)$label.font <- 2
 V(net)$label.color <- "black"
-V(net)$label.cex <- 0.5
+V(net)$label.cex <- 1
 
 
 png(filename="sample5000_hubs_authorities_layout_with_fr.png", width=3840, height=2160)
@@ -33,10 +32,10 @@ par(mfrow=c(1,2))
 V(net)$color <- ifelse(V(net)$indegree<=3,"gray50",ifelse(V(net)$indegree<20,"yellow", ifelse(V(net)$indegree>=20,"red", "gray50")))
 V(net)$size <- sqrt(V(net)$outdegree) * 3
 V(net)$label <- ifelse(V(net)$outdegree< 5 ,NA,V(net)$name)
-plot(net, vertex.label=NA, layout=l, main="Hubs") # Outgoing
+plot(net, layout=l, main="Hubs") # Outgoing
 
 V(net)$color <- ifelse(V(net)$outdegree<=3,"gray50",ifelse(V(net)$outdegree<20,"yellow", ifelse(V(net)$outdegree>=20,"red", "gray50")))
 V(net)$size <- sqrt(V(net)$indegree) * 3
 V(net)$label <- ifelse(V(net)$indegree< 5 ,NA,V(net)$name)
-plot(net, vertex.label=NA, layout=l, main="Authorities", cex.lab=1.5, cex.axis=1.5, cex.main=1.5, cex.sub=1.5) # Incomming
+plot(net, layout=l, main="Authorities") # Incomming
 dev.off()
