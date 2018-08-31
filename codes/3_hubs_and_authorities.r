@@ -2,7 +2,7 @@ library("igraph")
 
 # Creating Graph
 all_links <- read.csv("./au_graph.txt", header=T, as.is=T, sep="\t")
-# links <- all_links[sample(nrow(all_links), 7000),]
+links <- all_links[sample(nrow(all_links), 7000),]
 links <- all_links
 links$weight = 1
 
