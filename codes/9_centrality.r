@@ -1,19 +1,6 @@
 library("igraph")
 library("ggplot2")
 
-# # Creating Graph
-# links <- read.csv("./au_graph.txt", header=F, as.is=T, sep="\t")
-# net <- graph_from_data_frame(d=links, directed=F)
-# net <- simplify(net, remove.loops = T)
-
-# dg <- degree(net, mode="in", loops=FALSE)
-# sort(dg, decreasing = TRUE)
-
-# # standard_deg_cent <- degree(net, loops = FALSE)/(vcount(net) - 1)
-# # sort(standard_deg_cent, decreasing = TRUE)
-# # centr_dg <- centr_degree(net, mode="in")
-
-###########################
 # Creating Graph
 links <- read.csv("./au_graph.txt", header=F, as.is=T, sep="\t")
 net <- graph_from_data_frame(d=links, directed=T)
