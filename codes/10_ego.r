@@ -23,7 +23,7 @@ V(net)$outdegree <- degree(net, mode="out")
 # Labeling and Colorizing Wiki Node
 vcol <- ifelse(V(net)$outdegree<=3,"gray50",ifelse(V(net)$outdegree<20,"pink", ifelse(V(net)$outdegree>=20,"tomato", "gray50")))
 vcol[V(net)$name=="514"] <- "gold"
-V(net)$label <- ifelse(V(net)$name=="514", "wikileaks", NA)
+V(net)$label <- ifelse(V(net)$name=="514", "wikileaks", ifelse(V(net)$indegree > 15, V(net)$name, NA))
 
 # Visualization
 E(net)$arrow.mode <- 0
@@ -32,17 +32,15 @@ E(net)$color <- "gray50"
 V(net)$label.font <- 2
 V(net)$label.color <- "black"
 V(net)$label.cex <- 1
-l <- layout_with_fr(net)
 
 V(net)$size <- V(net)$indegree
 
-# tkid <- tkplot(net, vertex.color=vcol, layout=layout_randomly)
+tkid <- tkplot(net, vertex.color=vcol, layout=layout_randomly)
 
-# l <- tkplot.getcoords(tkid) # grab the coordinates from tkplot
+l <- tkplot.getcoords(tkid) # grab the coordinates from tkplot
 
-# tk_close(tkid, window.close = T)
+tk_close(tkid, window.close = T)
 
-# plot(net, layout=l)
-
-
-plot(net, vertex.color=vcol, layout=layout_randomly)
+png(filename="wiki_ego.png", width=3840, height=2160)
+plot(net, layout=l, vertex.color=vcol)
+dev.off()
